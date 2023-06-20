@@ -3,3 +3,27 @@ get http://localhost:3000/articles.json
 
 ###
 get http://localhost:3000/articles/1.json
+
+
+###
+post http://localhost:3000/articles.json
+Content-Type: application/json
+
+{
+  "title": "Joe Creates Newspaper App",
+  "text": "Continuing his efforts to catch up on time missed coding, Joe is building a quick and dirty newspaper application. Currently Joe is working on the backend with plans to move onto a Vue.js frontend this afternoon. At some point, a React frontend may also be created for additional practice. Features of this new application include the ability for users to view articles, add articles to their favorites and the the ability for the newspaper org to add certail articles to a paid membership tier.",
+  "author_id": 1
+}
+
+###
+delete http://localhost:3000/articles/3.json
+
+###
+patch http://localhost:3000/articles/4.json
+Content-Type: application/json
+
+{
+  "title": "testing patch",
+  "text": "testing patch",
+  "author_id": 1
+}

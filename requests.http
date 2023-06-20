@@ -27,3 +27,23 @@ Content-Type: application/json
   "text": "testing patch",
   "author_id": 1
 }
+
+###
+post http://localhost:3000/users.json
+Content-Type: application/json
+
+{
+  "first_name": "Joe",
+  "last_name": "Ulica",
+  "email": "joe@joe.com",
+  "password": "password"
+}
+
+###
+post http://localhost:3000/sessions.json
+Content-Type: application/json
+
+{
+  "email": "joe@joe.com",
+  "password": "password"
+}

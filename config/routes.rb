@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   post "/articles" => "articles#create"
   delete "/articles/:id" => "articles#destroy"
   patch "/articles/:id" => "articles#update"
+
+  post "/users" => "users#create"
+  post "/sessions" => "sessions#create"
 end

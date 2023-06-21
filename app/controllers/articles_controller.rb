@@ -19,26 +19,41 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(title: params[:title], author_id: params[:author_id], text: params[:text])
-    if @article.save
-      render template: "articles/show"
+    if current_user.admin
+      @article = Article.new(title: params[:title], author_id: params[:author_id], text: params[:text])
+      if @article.save
+        render template: "articles/show"
+      else
+        render json: {error: "Article could not be saved"}
+      end
     else
-      render json: {error: "Article could not be saved"}
+      render json: {}, status: :unauthorized
     end
   end
 
   def destroy
-    get_article(params[:id])
-    @article.delete
-    render json: {message: "article removed"}
+    if current_user.admin
+      get_article(params[:id])
+      @article.delete
+      render json: {message: "article removed"}
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 
   def update
-    get_article(params[:id])
-    @article.title = params[:title] || @article.title
-    @article.author_id = params[:author_id] || @article.author_id
-    @article.text = params[:text] || @article.text
-    @article.save
-    render template: "articles/show"
+    if current_user.admin
+      get_article(params[:id])
+      @article.title = params[:title] || @article.title
+      @article.author_id = params[:author_id] || @article.author_id
+      @article.text = params[:text] || @article.text
+      if @article.save
+        render template: "articles/show"
+      else
+        render json: {errors: article.errors.full_messages}, status: :bad_request
+      end
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 end

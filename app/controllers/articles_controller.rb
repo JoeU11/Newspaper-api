@@ -14,7 +14,13 @@ class ArticlesController < ApplicationController
     if !@article.premium || current_user && current_user.premium_member
       render template: "articles/show"
     else
-      render json: {title: @article.title, author: @article.author_name}
+      render json: {id: @article.id,
+        title: @article.title,
+        author: @article.author_name,
+        photos: @article.photos,
+        premium: @article.premium,
+        created_at: @article.created_at,
+        updated_at: @article.updated_at}
     end
   end
 

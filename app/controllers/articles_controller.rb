@@ -10,7 +10,12 @@ class ArticlesController < ApplicationController
 
   def show
     get_article(params[:id])
-    render template: "articles/show"
+    p current_user
+    if !@article.premium || current_user && current_user.premium_member
+      render template: "articles/show"
+    else
+      render json: {title: @article.title, author: @article.author_name}
+    end
   end
 
   def create

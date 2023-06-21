@@ -4,7 +4,7 @@
     title: article.title,
     author: article.author_name,
     photos: article.photos,
-    text: article.text,
+    # text: article.text,
     created_at: article.created_at
   }
 end

@@ -56,7 +56,7 @@ class ArticlesController < ApplicationController
       if @article.save
         render template: "articles/show"
       else
-        render json: {errors: article.errors.full_messages}, status: :bad_request
+        render json: {errors: @article.errors.full_messages}, status: :bad_request
       end
     else
       render json: {}, status: :unauthorized
